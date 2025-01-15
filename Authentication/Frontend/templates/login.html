@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication - Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+</head>
+<body>
+    <div class="box-shadow">
+        <div class="columns">
+            <div class="column">
+                <figure class="image is-4by3">
+                    <img src="{% static 'img/login.png' %}" alt="login"/>
+                </figure>
+            </div>
+            <div class="column">
+                <h2 class="title is-4">Login</h2>
+        <hr>
+        {% if messages %}
+            <div class="content has-text-danger">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="field">
+                <label class="label mb-0">Username</label>
+                <div class="control">
+                    <input class="input" type="text" name="username" required>
+                </div>
+            </div>
+            
+            <div class="field">
+                <label class="label mb-0">Password</label>
+                <div class="control">
+                    <input class="input mb-4" type="password" name="password" required>
+                </div>
+            </div>
+            <button type="submit" class="button is-link login_button">Login</button>
+        </form>
+        <hr>
+        <a href="{% url 'register' %}" class="register">Don't have an account? Register</a>
+        </div>
+        </div>
+        
+    </div>
+</body>
+</html>

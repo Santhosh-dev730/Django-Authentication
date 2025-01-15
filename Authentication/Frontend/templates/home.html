@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="container is-fluid mt-2">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="https://www.meta.com/">
+                    <img src="https://img.icons8.com/fluency/48/000000/meta.png" alt="meta"/>
+                </a>
+                <button class="navbar-burger" id="burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div id="navbar-menu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item" href="#">Home</a>
+                    <a class="navbar-item" href="#">About</a>
+                    <a class="navbar-item" href="#">Services</a>
+                    <a class="navbar-item" href="#">Contact</a>
+                    {% if user.is_authenticated %}
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link">
+                                <img src="{% static 'img/user.jpg' %}" alt="User Image">
+                            </a>
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item" href="{% url 'logout' %}">Logout</a>
+                            </div>
+                        </div>
+                    {% else %}
+                    
+                        <a class="navbar-item" href="{% url 'login' %}">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        <div class="courses-section">
+            <h2 class="title is-3 has-text-centered">Popular Courses</h2>
+            <div class="columns is-multiline">
+                <div class="column is-one-third">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="{% static 'img/python.png' %}" alt="Course Image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="title is-5">Python for Beginners</h3>
+                            <p>Master Python programming with hands-on projects.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column is-one-third">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="{% static 'img/ux.jpg' %}" alt="Course Image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="title is-5">UI/UX Design</h3>
+                            <p>Learn the principles of user experience and interface design.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column is-one-third">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="{% static 'img/data_science.jpg' %}" alt="Course Image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="title is-5">Data Science</h3>
+                            <p>Develop skills to excel in business and leadership roles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        var mobileMenu = document.querySelector(".navbar-burger");
+        var navMenu = document.querySelector("#navbar-menu");
+        mobileMenu.addEventListener("click", () => {
+            mobileMenu.classList.toggle("is-active");
+        })
+        mobileMenu.addEventListener("click", () => {
+            navMenu.classList.toggle("is-active");
+        })    
+    </script>
+</body>
+</html>
